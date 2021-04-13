@@ -2,7 +2,7 @@
 #include "TimedDoor.h"
 #include <iostream>
 #include <string>
-#include <time.h>
+
 
 
 DoorTimerAdapter::DoorTimerAdapter(TimedDoor& door_): door(door_) {}
@@ -10,7 +10,7 @@ void DoorTimerAdapter::Timeout() {
     door.DoorTimeOut();
 }
 TimedDoor::TimedDoor(int iTimeout_) : opened(false),
-adapter(new DoorTimerAdapter(*this)),iTimeout(iTimeout_) {}
+adapter(new DoorTimerAdapter(*this)), iTimeout(iTimeout_) {}
 
 bool TimedDoor::isDoorOpened() {
     return opened;
@@ -28,15 +28,15 @@ void TimedDoor::DoorTimeOut() {
 }
 void TimedDoor::throwState() {
     if (opened) {
-	    throw std::string("the door is opened!");
+        throw std::string("the door is opened!");
     } else {
-	    throw std::string("the door is closed!");
+        throw std::string("the door is closed!");
     }
 }
 void Timer::sleep(int iTimeout) {
     time_t start = time(nullptr);
     while (time(nullptr) - start < iTimeout) {
-	    continue;
+        continue;
     }
 }
 void Timer::tregister(int iTimeout, TimerClient* client) {
